@@ -16,6 +16,7 @@ public class EstudanteModel {
     @Column (name = "idade_estudante")
     private Integer idade;
 
+
     public EstudanteModel(){
 
     }
