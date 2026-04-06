@@ -23,7 +23,7 @@ public class EstudanteController {
         return ResponseEntity.ok(estudantes);
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public ResponseEntity<EstudanteModel> buscarEstudante(@PathVariable Long id){
         EstudanteModel estudante = estudanteService.buscarEstudante(id);
         return ResponseEntity.ok(estudante);
@@ -33,17 +33,17 @@ public class EstudanteController {
     public ResponseEntity<EstudanteModel> criarEstudante(@RequestBody EstudanteModel estudanteModel){
         EstudanteModel estudanteCriado = estudanteService.criarEstudante(estudanteModel);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
-                .path("{/id}").buildAndExpand(estudanteCriado.getId()).toUri();
+                .path("/{id}").buildAndExpand(estudanteCriado.getId()).toUri();
         return ResponseEntity.created(uri).body(estudanteCriado);
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deletarEstudante(@PathVariable Long id){
         estudanteService.deletarEstudante(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("{/id}")
+    @PutMapping("/{id}")
     public ResponseEntity<EstudanteModel> atualizarEstudante
             (@PathVariable Long id, @RequestBody EstudanteModel estudanteModel){
         EstudanteModel estudanteAtualizado = estudanteService.atualizarEstudante(estudanteModel, id);
